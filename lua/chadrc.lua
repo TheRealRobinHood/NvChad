@@ -7,11 +7,14 @@ local M = {}
 
 M.base46 = {
 	theme = "onedark",
-
+	font = "JetBrainsMono Nerd Font 12",
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
 	-- },
 }
-
+M.ui = {theme = "catppuccin"}
+M.nvdash = {
+  load_on_startup = true,
+}
 return M
