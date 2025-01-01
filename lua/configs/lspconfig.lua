@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "clangd" }
+local servers = { "html", "cssls", "clangd", "cmake" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -20,9 +20,12 @@ local on_attach = nvlsp.on_attach
 local capabilities = nvlsp.capabilities
 
 lspconfig.clangd.setup {
+  cmd = { "clangd", "--clang-tidy" },
   on_attach = function(client, bufnr)
     client.server_capabilities.signatureHelpProvider = false
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
+  settings = { clangd = { checkOptions = { "clang-tidy", "--clang-tidy-checks=*" } } },
+  init_options = { clangdFileStatus = true },
 }
